@@ -1,12 +1,27 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+ <Navigation />
+   
+<router-view/>
+<Footer />
+
+
   </div>
 </template>
+
+<script>
+import HelloWorld from './components/HelloWorld.vue'
+import Navigation from './components/Navigation.vue'
+import Footer from './components/Footer.vue'
+export default {
+  name: 'app',
+  components: {
+    HelloWorld,
+    Navigation,
+    Footer
+  }
+}
+</script>
 
 <style>
 #app {
@@ -15,17 +30,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-#nav {
-  padding: 30px;
+  /* margin-top: 60px; */
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
