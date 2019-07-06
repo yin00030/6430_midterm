@@ -5,7 +5,7 @@
         <el-row>
           <el-col :span="8">
             <div class="grid-content bg-purple-light">
-              <h1>My Vue App</h1>
+              <h1>Flowerworld</h1>
             </div>
           </el-col>
           <el-col :span="4">
@@ -53,8 +53,8 @@
   padding: 0px;
 }
 
-.el-row h1:first {
-  color: white;
+.el-row h1 {
+  color: black;
   margin-top: 2%;
 }
 

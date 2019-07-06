@@ -1,39 +1,47 @@
 <template>
   <div>
-    <h1>{{ title }}</h1>
+    <div class="container">
+      <el-row>
+        <el-col :span="24">
+          <div class="grid-content bg-purple-dark">
+            <h1>{{ title }}</h1>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col v-for="(testimonial, index) of testimonials" :key="index" :span="12">
+          <div class="current_comment">
+            <h4>{{ testimonial.name }} - {{ testimonial.position }}</h4>
+            <p>{{ testimonial.comment }}</p>
+          </div>
+        </el-col>
+      </el-row>
 
-    <el-row>
-      <el-col v-for="(testimonial, index) of testimonials" :key="index" :span="12">
-        <div class="current_comment">
-          <h4>{{ testimonial.name }} - {{ testimonial.position }}</h4>
-          <p>{{ testimonial.comment }}</p>
+      <el-form
+        :model="ruleForm"
+        :rules="rules"
+        v-show="!dialogVisible"
+        ref="ruleForm"
+        label-width="120px"
+        class="demo-ruleForm"
+      >
+        <div class="top">
+          <h4>{{ sentence }}</h4>
+          <el-form-item label="Name" prop="name">
+            <el-input v-model="ruleForm.name"></el-input>
+          </el-form-item>
+          <el-form-item label="Job Title" prop="position">
+            <el-input v-model="ruleForm.position"></el-input>
+          </el-form-item>
         </div>
-      </el-col>
-    </el-row>
-
-    <el-form
-      :model="ruleForm"
-      :rules="rules"
-      v-show="!dialogVisible"
-      ref="ruleForm"
-      label-width="120px"
-      class="demo-ruleForm"
-    >
-      <div class="top">
-        <el-form-item label="Name" prop="name">
-          <el-input v-model="ruleForm.name"></el-input>
+        <el-form-item label="Comments" prop="comment">
+          <el-input type="textarea" v-model="ruleForm.comment"></el-input>
         </el-form-item>
-        <el-form-item label="Job Title" prop="position">
-          <el-input v-model="ruleForm.position"></el-input>
+        <el-form-item>
+          <el-button type="primary" @click="submitForm('ruleForm')">Submit</el-button>
         </el-form-item>
-      </div>
-      <el-form-item label="Comments" prop="comment">
-        <el-input type="textarea" v-model="ruleForm.comment"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">Submit</el-button>
-      </el-form-item>
-    </el-form>
+      </el-form>
+    </div>
   </div>
 </template>
 <script>
@@ -44,6 +52,7 @@ export default {
   data() {
     return {
       title: "Testimonials",
+      sentence: "Leave us a testimonial",
       ruleForm: {
         name: "",
         position: "",
@@ -53,7 +62,7 @@ export default {
         name: [
           {
             required: true,
-            message: "Please input first name",
+            message: "Please input your name",
             trigger: "blur"
           },
           {
@@ -66,7 +75,7 @@ export default {
         position: [
           {
             required: true,
-            message: "Please input last name",
+            message: "Please input your job title",
             trigger: "blur"
           },
           {
@@ -79,7 +88,7 @@ export default {
         comment: [
           {
             required: true,
-            message: "Please input Claim Request Content form",
+            message: "Please input your comment",
             trigger: "blur"
           },
           {
@@ -149,8 +158,11 @@ export default {
 <style>
 .current_comment {
   background-color: #999;
-  width: 50%;
+  width: 80%;
   margin: 0 auto;
+  margin-top: 3%;
+  padding: 3%;
+  margin-bottom: 3%;
 }
 form {
   margin: 0 auto;
@@ -198,7 +210,8 @@ button {
   justify-content: space-between;
 }
 
-el-col {
+#app div {
+  background-color: silver;
 }
 </style>
 
